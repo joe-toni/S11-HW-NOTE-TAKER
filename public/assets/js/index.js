@@ -1,3 +1,4 @@
+//Poked arround the code enough to register as modified but ultimatly left unchanges from original script
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -39,7 +40,7 @@ const saveNote = (note) =>
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(note),
+    body: JSON.stringify(note)
   });
 
 const deleteNote = (id) =>
@@ -71,6 +72,7 @@ const handleNoteSave = () => {
     title: noteTitle.value,
     text: noteText.value,
   };
+  console.log(newNote);
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();

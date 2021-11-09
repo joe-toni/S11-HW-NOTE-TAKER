@@ -46,6 +46,8 @@ body {
   border-bottom: none;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+  /*Added Scrolling to the div that contains the note cards*/
+  overflow-y: auto;
 }
 
 .list-container {
