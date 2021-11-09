@@ -6,7 +6,7 @@ const path = require('path');
 //This Initial getting and overwriting of the saved note element ids assures that any note with an id that does not correctly correspond to its position
 //In the object array has it reset to the correct value before any get requests can be made.
 const savedEntries = require('./db/db.json');
-savedEntries.forEach((element, i) => {element.id = i});
+savedEntries.forEach((element, i) => {element.id = i+1});
 fs.writeFileSync('./db/db.json', JSON.stringify(savedEntries));
 
 
@@ -37,7 +37,7 @@ app.post('/api/notes', (req, res) =>
 {
   let notes = JSON.parse(fs.readFileSync('./db/db.json','utf-8'));
   let newNote = req.body;
-  newNote.id = notes.length;
+  newNote.id = notes.length+1;
   notes.push(newNote);
   fs.writeFileSync('./db/db.json', JSON.stringify(notes));
   res.send('success');
@@ -51,7 +51,7 @@ app.delete('/api/notes/:id', (req, res) =>
   let result = [];
   let notes = JSON.parse(fs.readFileSync('./db/db.json','utf-8'));
   notes.forEach((element) => {if(element.id != requestedId){result.push(element)}});
-  result.forEach((element, i) => {element.id = i});
+  result.forEach((element, i) => {element.id = i+1});
   fs.writeFileSync('./db/db.json', JSON.stringify(result));
   res.send('success');
 });
